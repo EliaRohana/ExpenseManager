@@ -9,9 +9,11 @@ import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.*;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.data.mongodb.core.query.*;
+import org.springframework.util.MultiValueMap;
+
+import java.util.HashMap;
+import java.util.List;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -74,4 +76,16 @@ public class MonthlyReportRepositoryImpl implements MonthlyReportRepositoryCusto
         AggregationResults<DBObject> result = template.aggregate(aggregation, MonthlyReport.class, DBObject.class);
         return result.getMappedResults().isEmpty() ? 0 : (int) result.getMappedResults().get(0).get("total");
     }
+
+    @Override
+    public List<MonthlyReport> findByParams(HashMap<String, List<Object>> allRequestParams) {
+        Criteria whereCriteria = new Criteria();
+        allRequestParams.forEach((key,value)-> whereCriteria.and(key).is(value.get(0)));
+        Query query = Query.query(whereCriteria);
+        query.fields().exclude("expenses");
+        return template.find(query, MonthlyReport.class);
+    }
+
+
+
 }

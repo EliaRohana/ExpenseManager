@@ -6,6 +6,7 @@ import com.elia.em.service.MontlyReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +38,8 @@ public class MonthlyReportController {
     }
 
     @GetMapping
-    public MonthlyReport read(@RequestParam String id){
-        return service.findById(id);
+    public List<MonthlyReport> read(@RequestParam MultiValueMap<String, String> allRequestParams){
+        return service.findBy(allRequestParams);
     }
 
     @PutMapping("/{id}")
@@ -57,5 +58,8 @@ public class MonthlyReportController {
     public int getTotalExpensesCost(@PathVariable String id, @RequestParam(required = false) Category category){
         return service.getReportTotalCosts(id, category);
     }
+
+
+
 
 }

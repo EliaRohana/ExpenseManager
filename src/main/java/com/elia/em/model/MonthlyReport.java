@@ -23,6 +23,9 @@ public class MonthlyReport {
     private Collection<Expense> expenses;
     private String userId;
 
+    public MonthlyReport() {
+    }
+
     public MonthlyReport(String name, Month month, int year, String userId) {
         this.name = name;
         this.month = month;

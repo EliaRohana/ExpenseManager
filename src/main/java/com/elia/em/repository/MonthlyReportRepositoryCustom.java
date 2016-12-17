@@ -2,6 +2,11 @@ package com.elia.em.repository;
 
 import com.elia.em.model.Category;
 import com.elia.em.model.Expense;
+import com.elia.em.model.MonthlyReport;
+import org.springframework.util.MultiValueMap;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Elia on 12/2/2016.
@@ -17,6 +22,8 @@ public interface MonthlyReportRepositoryCustom {
     int getExpenseListTotalCost(String reportId);
 
     int getExpenseListTotalCostByCategory(String reportId, Category category);
+
+    List<MonthlyReport> findByParams(HashMap<String, List<Object>> allRequestParams);
 
 }
 
