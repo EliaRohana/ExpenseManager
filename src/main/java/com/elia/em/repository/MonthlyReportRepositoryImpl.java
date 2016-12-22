@@ -1,19 +1,17 @@
 package com.elia.em.repository;
 
-import com.elia.em.model.Category;
-import com.elia.em.model.Expense;
-import com.elia.em.model.ExpenseFactory;
-import com.elia.em.model.MonthlyReport;
+import com.elia.em.model.*;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.*;
 import org.springframework.data.mongodb.core.query.*;
-import org.springframework.util.MultiValueMap;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -84,6 +82,20 @@ public class MonthlyReportRepositoryImpl implements MonthlyReportRepositoryCusto
         Query query = Query.query(whereCriteria);
         query.fields().exclude("expenses");
         return template.find(query, MonthlyReport.class);
+    }
+
+    public List<DBObject> getTotalExpensesForCategories(String userId, Optional<Integer> year){
+        Criteria whereCriteria = where("userId").is(userId);
+        year.ifPresent(val->whereCriteria.and("year").is(val));
+        Aggregation categoryTotal = newAggregation(
+                match(whereCriteria),
+                unwind("expenses"),
+                group("expenses.category").sum("expenses.cost").as("total")
+                .avg("expenses.cost").as("costAvg")
+        );
+
+        AggregationResults<DBObject> aggregateResult = template.aggregate(categoryTotal, MonthlyReport.class, DBObject.class);
+        return aggregateResult.getMappedResults();
     }
 
 

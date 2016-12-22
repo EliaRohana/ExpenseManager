@@ -6,13 +6,14 @@ import com.elia.em.model.MonthlyReport;
 import com.elia.em.repository.MonthlyReportRepository;
 import com.elia.em.service.util.DefaultFieldTypeProvider;
 import com.elia.em.service.util.QueryParamParserProvider;
+import com.mongodb.DBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -84,5 +85,9 @@ public class MontlyReportService {
             parsedRequestParams.put(key, parsedValues);
         });
         return monthlyReportRepository.findByParams(parsedRequestParams);
+    }
+
+    public List<DBObject> getTotalExpensesForCategories(String userId, Optional<Integer> year) {
+        return monthlyReportRepository.getTotalExpensesForCategories(userId, year);
     }
 }

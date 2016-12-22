@@ -3,6 +3,7 @@ package com.elia.em.api;
 import com.elia.em.model.Category;
 import com.elia.em.model.MonthlyReport;
 import com.elia.em.service.MontlyReportService;
+import com.mongodb.DBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Elia on 12/2/2016.
@@ -57,6 +59,11 @@ public class MonthlyReportController {
     @GetMapping("/{id}/total")
     public int getTotalExpensesCost(@PathVariable String id, @RequestParam(required = false) Category category){
         return service.getReportTotalCosts(id, category);
+    }
+
+    @GetMapping("/totalCategories")
+    public List<DBObject> getTotalExpensesForCategories(@RequestParam String userId, @RequestParam(required = false) Optional<Integer> year){
+        return service.getTotalExpensesForCategories(userId, year);
     }
 
 

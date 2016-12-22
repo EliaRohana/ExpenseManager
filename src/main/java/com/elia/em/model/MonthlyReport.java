@@ -19,9 +19,9 @@ public class MonthlyReport {
     private String name;
     private Month month;
     private int year;
+    private String userId;
     @JsonProperty("expenses")
     private Collection<Expense> expenses;
-    private String userId;
 
     public MonthlyReport() {
     }
