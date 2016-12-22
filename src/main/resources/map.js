@@ -29,10 +29,10 @@ db.monthly_reports.aggregate(
 )
 
 db.monthly_reports.aggregate( [
-    { $unwind: "$expenseList" },
+    { $unwind: "$expenses" },
     { $group: {
         _id: '$_id',
-        sum: { $sum: 'expenses.cost' }
+        sum: { $sum: '$expenses.cost' }
     }
     }
 ] );
