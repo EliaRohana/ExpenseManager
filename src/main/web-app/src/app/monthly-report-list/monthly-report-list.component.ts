@@ -6,7 +6,11 @@ import {MonthlyReport} from "../model/MonthlyReport";
   selector: 'app-monthly-report-list',
   template: `
 <h2>Monthly Reports</h2>
-<app-monthly-report *ngFor="let report of monthlyReports"></app-monthly-report>
+  <p-dataGrid [value]="monthlyReports" >
+      <template let-report>
+        <app-monthly-report [monthlyReport]="report"></app-monthly-report>
+      </template>
+  </p-dataGrid>
 `,
   styleUrls: ['./monthly-report-list.component.css']
 })
@@ -20,14 +24,16 @@ export class MonthlyReportListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.monthlyReports = [new MonthlyReport, new MonthlyReport, new MonthlyReport,
-      new MonthlyReport, new MonthlyReport, new MonthlyReport,
-      new MonthlyReport, new MonthlyReport, new MonthlyReport];
-    // this.api
-    //     .getMonthlyReports('5873f0dce81a9f1930905fbd')
-    //     .subscribe(
-    //         reports => this.monthlyReports = reports,
-    //         error => this.apiErrorMsg = error)
+    // this.monthlyReports = [new MonthlyReport, new MonthlyReport, new MonthlyReport,
+    //   new MonthlyReport, new MonthlyReport, new MonthlyReport,
+    //   new MonthlyReport, new MonthlyReport, new MonthlyReport];
+    this.api
+        .getMonthlyReports('58789303e81a9f1f68f0a802')
+        .subscribe(
+            reports => {
+              console.log(reports)
+              this.monthlyReports = reports},
+            error => this.apiErrorMsg = error)
   }
 
 }
