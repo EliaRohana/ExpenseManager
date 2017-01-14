@@ -16,6 +16,9 @@ public class Expense {
     private String name;
     private String remarks;
     private String category;
+    private String merchant;
+    private PaymentMode paymentMode;
+    private LocalDateTime date;
     private LocalDateTime creationDate;
     private LocalDateTime updateDate;
 
@@ -91,6 +94,30 @@ public class Expense {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant;
+    }
+
+    public PaymentMode getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(PaymentMode paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     @Override
