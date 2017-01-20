@@ -1,0 +1,29 @@
+.login-container{
+    width: 400px;
+    align-content: center;
+    margin: auto;
+    height: auto;
+    background-image: url("/src/main/web-app/src/assets/images/login.jpg");
+}
+
+.login-field {
+    margin: 15px;
+}
+
+.login-submit {
+    margin: 15px;
+}
+
+.username-input, .password-input{
+    width: 100%;
+}
+
+
+.login-button{
+    background-color: #2980b9;
+    width: 100%;
+}
+
+.login-panel-header{
+    background-color: #2980b9;
+}

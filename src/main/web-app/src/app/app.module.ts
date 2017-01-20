@@ -9,19 +9,29 @@ import {MonthlyReportApiService} from "./api/monthly-report-api.service";
 import {DataGridModule} from 'primeng/primeng';
 import {PanelModule} from 'primeng/primeng';
 import { MonthlyReportComponent } from './monthly-report/monthly-report.component';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from '@angular/material';
+import {InputTextModule} from 'primeng/primeng';
+import {PasswordModule} from 'primeng/primeng';
+import {ButtonModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
     AppComponent,
       MonthlyReportListComponent,
-      MonthlyReportComponent
+      MonthlyReportComponent,
+      LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     DataGridModule,
-    PanelModule
+    PanelModule,
+    InputTextModule,
+    PasswordModule ,
+    ButtonModule,
+    [MaterialModule.forRoot()]
   ],
   providers: [MonthlyReportApiService],
   bootstrap: [AppComponent]
