@@ -59,6 +59,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.3.4.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -109,7 +114,7 @@
 								<goal>copy-resources</goal>
 							</goals>
 							<configuration>
-								<outputDirectory>${basedir}/target/public</outputDirectory>
+								<outputDirectory>${basedir}/target/classes/public</outputDirectory>
 								<resources>
 									<resource>
 										<directory>src/main/web-app/dist</directory>
