@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Month;
 
@@ -22,6 +23,8 @@ public class ExpenseManagerApplication implements CommandLineRunner {
 	CounterRepository counterRepository;
 	@Autowired
 	ExpenseFactory expenseFactory;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExpenseManagerApplication.class, args);
@@ -36,8 +39,10 @@ public class ExpenseManagerApplication implements CommandLineRunner {
 
 		counterRepository.save(new Counter("expenses"));
 
-		User user = new User("elia", "rohana", "1234");
+		User user = new User("elia", "rohana", "rohaelia@gmail.com", passwordEncoder.encode("1234"));
+		User user2 = new User("abir", "rohana", "abir@gmail.com", passwordEncoder.encode("1234"));
 		user = userRepository.save(user);
+		user2 = userRepository.save(user2);
 		MonthlyReport monthlyReport = new MonthlyReport("december", Month.DECEMBER, 2016, user.getId());
 		monthlyReport = monthlyReportRepository.save(monthlyReport);
 
