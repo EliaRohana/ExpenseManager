@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {MonthlyReportListComponent} from "./monthly-report-list/monthly-report-list.component";
-import {MonthlyReportApiService} from "./api/monthly-report-api.service";
+import {MonthlyReportApiService} from "./services/monthly-report-api.service";
 import {DataGridModule} from 'primeng/primeng';
 import {PanelModule} from 'primeng/primeng';
 import { MonthlyReportComponent } from './monthly-report/monthly-report.component';
@@ -14,6 +14,8 @@ import { MaterialModule } from '@angular/material';
 import {InputTextModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
+import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {AuthGuard} from "./auth-guard";
 
 @NgModule({
   declarations: [
@@ -25,15 +27,17 @@ import {ButtonModule} from 'primeng/primeng';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     DataGridModule,
     PanelModule,
     InputTextModule,
     PasswordModule ,
     ButtonModule,
+    AppRoutingModule,
     [MaterialModule.forRoot()]
   ],
-  providers: [MonthlyReportApiService],
+  providers: [MonthlyReportApiService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

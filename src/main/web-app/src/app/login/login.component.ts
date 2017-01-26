@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   template: `
   <div class="login-container">
-    <form >
+    <form [formGroup]="loginForm"  (ngSubmit)="login()">
       <p-panel header="Login">
+      
         <div class="login-field">
             <label>Username:</label>
-            <input type="text" pInputText placeholder="Enter Username" class="username-input"/>
+            <input type="text" formControlName="username"  pInputText placeholder="Enter Username" class="username-input" />
         </div>
         <div class="login-field">
             <label>Password:</label>
-            <input type="password" pInputText placeholder="Enter Password" class="password-input"/>
+            <input type="password" formControlName="password" pInputText placeholder="Enter Password" class="password-input" />
         </div>
         
         <div class="login-submit">
-            <button pButton type="button" class="login-button"  label="Submit"></button>
+            <button pButton type="submit" class="login-button"  label="Submit" [disabled]="!loginForm.valid"></button>
         </div>
     </p-panel>
     </form>
@@ -28,9 +31,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  private loginForm: FormGroup;
+  private router: Router;
+
+  constructor(router: Router) {
+    this.router = router;
+  }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.minLength(8)
+      ]))
+    })
+
   }
+
+  public login(): void{
+    console.log('login')
+    this.router.navigate(['reports'])
+
+}
 
 }

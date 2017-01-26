@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MonthlyReportApiService} from "../api/monthly-report-api.service";
+import {MonthlyReportApiService} from "../services/monthly-report-api.service";
 import {MonthlyReport} from "../model/MonthlyReport";
 
 @Component({

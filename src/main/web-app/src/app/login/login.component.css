@@ -3,7 +3,6 @@
     align-content: center;
     margin: auto;
     height: auto;
-    background-image: url("/src/main/web-app/src/assets/images/login.jpg");
 }
 
 .login-field {
