@@ -138,7 +138,7 @@
                                 <executable>ng</executable>
                                 <arguments>
                                     <argument>build</argument>
-                                    <argument>--dev</argument>
+                                    <argument>${angular.build.env}</argument>
                                 </arguments>
                             </configuration>
                             <goals>
