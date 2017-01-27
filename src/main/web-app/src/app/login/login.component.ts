@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -32,26 +33,35 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   private loginForm: FormGroup;
+  private username: FormControl;
+  private password: FormControl;
   private router: Router;
+  private authService: AuthenticationService;
 
-  constructor(router: Router) {
+  constructor(router: Router, authService: AuthenticationService) {
     this.router = router;
+    this.authService = authService;
   }
 
   ngOnInit() {
+    this.username = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(4)
+    ]));
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.minLength(8)
-      ]))
+      username: this.username,
+      password: this.password
     })
 
   }
 
   public login(): void{
-    console.log('login')
-    this.router.navigate(['reports'])
+    this.authService.authenticate(this.username.value, this.password.value).subscribe((result) => {
+      if(result)
+        this.router.navigate(['reports'])
+    });
+
 
 }
 

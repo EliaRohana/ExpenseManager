@@ -16,6 +16,7 @@ import {PasswordModule} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {AuthGuard} from "./auth-guard";
+import {AuthenticationService} from "./services/authentication.service";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {AuthGuard} from "./auth-guard";
     AppRoutingModule,
     [MaterialModule.forRoot()]
   ],
-  providers: [MonthlyReportApiService, AuthGuard ],
+  providers: [MonthlyReportApiService, AuthGuard ,AuthenticationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
