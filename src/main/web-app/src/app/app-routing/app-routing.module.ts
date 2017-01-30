@@ -6,13 +6,14 @@ import {MonthlyReportListComponent} from "../monthly-report-list/monthly-report-
 import {AuthGuard} from "../auth-guard";
 
 const routes: Routes = [
+  {path: '', redirectTo: '/login', pathMatch:'full'},
   { path: 'login',  component: LoginComponent },
   { path: 'reports', component:  MonthlyReportListComponent, canActivate: [AuthGuard]},
   ];
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, { useHash: true }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
