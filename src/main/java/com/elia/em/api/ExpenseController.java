@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Elia on 11/20/2016.
  */
 @RestController()
-@RequestMapping("/expense/{reportId}")
+@RequestMapping("/api/expense/{reportId}")
 public class ExpenseController {
 
     private MontlyReportService service;

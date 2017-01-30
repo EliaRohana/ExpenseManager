@@ -19,7 +19,7 @@ import java.util.Optional;
  * Created by Elia on 12/2/2016.
  */
 @RestController()
-@RequestMapping("/monthlyReport")
+@RequestMapping("/api/monthlyReport")
 public class MonthlyReportController {
 
     private final MontlyReportService service;
