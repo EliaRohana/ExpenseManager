@@ -10,6 +10,7 @@
 }
 
 .login-submit {
+    margin-top: 30px;
     margin: 15px;
 }
 
@@ -20,9 +21,12 @@
 
 .login-button{
     background-color: #2980b9;
-    width: 100%;
 }
 
 .login-panel-header{
     background-color: #2980b9;
+}
+
+.register-link {
+    float: right;
 }

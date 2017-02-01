@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../services/authentication.service";
@@ -12,7 +12,7 @@ import {AuthenticationService} from "../services/authentication.service";
       
         <div class="login-field">
             <label>Username:</label>
-            <input type="text" formControlName="username"  pInputText placeholder="Enter Username" class="username-input" />
+            <input type="email" formControlName="username"  pInputText placeholder="Enter Username" class="username-input" />
         </div>
         <div class="login-field">
             <label>Password:</label>
@@ -20,7 +20,8 @@ import {AuthenticationService} from "../services/authentication.service";
         </div>
         
         <div class="login-submit">
-            <button pButton type="submit" class="login-button"  label="Submit" [disabled]="!loginForm.valid"></button>
+            <button pButton type="submit" class="login-button"  label="Login" [disabled]="!loginForm.valid"></button>
+            <a [routerLink]="['/register']" routerLinkActive="active" class="btn btn-link register-link">Register</a>
         </div>
     </p-panel>
     </form>
