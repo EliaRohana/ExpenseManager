@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -19,9 +19,11 @@ export class AuthenticationService {
     headers.append("Authorization", "Basic " + btoa(username + ":" + password));
     let options = new RequestOptions({headers: headers});
 
-    return this.http.request(`${baseUrl}/principal`, options)
+      let url = `${baseUrl}/principal`;
+      return this.http.request(url, options)
         .map((response) => {
-          localStorage.setItem('currentUser', response.json());
+          let user = {email: response.json().email, id: response.json().id};
+          localStorage.setItem('currentUser', btoa(JSON.stringify(user)));
           this.router.navigate(['reports']);
           return true;
         })

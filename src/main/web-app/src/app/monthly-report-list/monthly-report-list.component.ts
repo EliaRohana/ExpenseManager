@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {MonthlyReportApiService} from "../services/monthly-report-api.service";
 import {MonthlyReport} from "../model/MonthlyReport";
 
@@ -24,11 +24,9 @@ export class MonthlyReportListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.monthlyReports = [new MonthlyReport, new MonthlyReport, new MonthlyReport,
-    //   new MonthlyReport, new MonthlyReport, new MonthlyReport,
-    //   new MonthlyReport, new MonthlyReport, new MonthlyReport];
+    let user = JSON.parse(atob(localStorage.getItem('currentUser')));
     this.api
-        .getMonthlyReports('58789303e81a9f1f68f0a802')
+        .getMonthlyReports(user.id)
         .subscribe(
             reports => {
               console.log(reports)

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by Elia on 12/8/2016.
  */
-@RestController("/api/user")
+@RestController
 @CrossOrigin
 public class UsersController {
 

@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {Http, URLSearchParams, Response} from "@angular/http";
 import {MonthlyReport} from "../model/MonthlyReport";
 import {Observable} from "rxjs";
+import {apiUrl} from "./api-consts";
 
 @Injectable()
 export class MonthlyReportApiService {
   private http: Http;
-  private baseUrl: string = 'http://localhost:8080/monthlyReport';
+  private baseUrl: string = apiUrl + '/monthlyReport';
 
   constructor(http: Http) {
     this.http = http;
