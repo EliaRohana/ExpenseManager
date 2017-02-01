@@ -1,0 +1,43 @@
+<div class="register-container">
+    <form  [formGroup]="registerForm"  (ngSubmit)="register()">
+
+        <p-fieldset legend="Register">
+
+            <!--<div class="control-group">-->
+                <!--&lt;!&ndash; Username &ndash;&gt;-->
+                <!--<label class="control-label"  for="username">Username</label>-->
+                <!--<div class="controls">-->
+                    <!--<input pInputText formControlName="username" type="text" id="username" name="username" placeholder="" class="input-xlarge">-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="control-group">
+                <!-- E-mail -->
+                <label class="control-label" for="email">E-mail</label>
+                <div class="controls">
+                    <input pInputText formControlName="email" type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Password-->
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input type="password" formControlName="password" id="password" name="password" pPassword  placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Password -->
+                <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                <div class="controls">
+                    <input pInputText formControlName="passwordConfirm" type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="form-controls">
+                <button pButton  type="submit" class="ui-button-success" label="Register"></button>
+            </div>
+        </p-fieldset>
+    </form>
+</div>

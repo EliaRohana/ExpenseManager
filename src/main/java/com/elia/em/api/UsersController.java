@@ -6,9 +6,7 @@ import com.elia.em.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Elia on 12/8/2016.
@@ -29,8 +27,8 @@ public class UsersController {
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
-    @RequestMapping("/register")
-    public ResponseEntity<?> register(User user){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody User user){
         if(userRepository.findByEmail(user.getEmail()) != null)
             return ResponseEntity.badRequest().body("Email already in use, please choose different username");
 

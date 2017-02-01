@@ -5,7 +5,14 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {MonthlyReportListComponent} from "./monthly-report-list/monthly-report-list.component";
 import {MonthlyReportApiService} from "./services/monthly-report-api.service";
-import {DataGridModule, PanelModule, InputTextModule, PasswordModule, ButtonModule} from "primeng/primeng";
+import {
+  DataGridModule,
+  PanelModule,
+  InputTextModule,
+  PasswordModule,
+  ButtonModule,
+  FieldsetModule
+} from "primeng/primeng";
 import {MonthlyReportComponent} from "./monthly-report/monthly-report.component";
 import {LoginComponent} from "./login/login.component";
 import {MaterialModule} from "@angular/material";
@@ -33,6 +40,7 @@ import {RegisterComponent} from "./register/register.component";
     PasswordModule ,
     ButtonModule,
     AppRoutingModule,
+    FieldsetModule,
     [MaterialModule.forRoot()]
   ],
   providers: [MonthlyReportApiService, AuthGuard ,AuthenticationService ],

@@ -28,6 +28,18 @@ export class AuthenticationService {
           return true;
         })
   }
+
+  public register(newUser) {
+    let url = `${baseUrl}/register`;
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http
+        .post(url, newUser, options)
+        .subscribe((response) => {
+          console.log(response.status == 204)
+        });
+  }
+
   public signup(){
     localStorage.removeItem('currentUser');
     this.router.navigate(['login']);
