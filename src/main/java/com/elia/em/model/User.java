@@ -11,7 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "user")
 public class User {
-    @Id       private String id;
+    @Id
+    private String id;
     @NotEmpty
     private String firstName;
     @NotEmpty
