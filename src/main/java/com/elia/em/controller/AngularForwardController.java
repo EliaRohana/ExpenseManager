@@ -1,4 +1,4 @@
-package com.elia.em.api;
+package com.elia.em.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.elia.em.service.util;
+package com.elia.em.util;
 
 import org.springframework.stereotype.Component;
 
