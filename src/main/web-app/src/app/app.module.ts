@@ -6,20 +6,23 @@ import {AppComponent} from "./app.component";
 import {MonthlyReportListComponent} from "./monthly-report-list/monthly-report-list.component";
 import {MonthlyReportApiService} from "./services/monthly-report-api.service";
 import {
-  DataGridModule,
-  PanelModule,
-  InputTextModule,
-  PasswordModule,
-  ButtonModule,
-  FieldsetModule
+    DataGridModule,
+    PanelModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    FieldsetModule
 } from "primeng/primeng";
 import {MonthlyReportComponent} from "./monthly-report/monthly-report.component";
 import {LoginComponent} from "./login/login.component";
 import {MaterialModule} from "@angular/material";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {AuthGuard} from "./auth-guard";
-import {AuthenticationService} from "./services/authentication.service";
+import {UserService} from "./services/user.service";
 import {RegisterComponent} from "./register/register.component";
+import {CustomFormsModule} from "ng2-validation";
+import {GrowlModule} from "primeng/components/growl/growl";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import {RegisterComponent} from "./register/register.component";
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -39,11 +43,13 @@ import {RegisterComponent} from "./register/register.component";
     InputTextModule,
     PasswordModule ,
     ButtonModule,
+    GrowlModule,
     AppRoutingModule,
     FieldsetModule,
+    CustomFormsModule,
     [MaterialModule.forRoot()]
   ],
-  providers: [MonthlyReportApiService, AuthGuard ,AuthenticationService ],
+  providers: [MonthlyReportApiService, AuthGuard ,UserService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

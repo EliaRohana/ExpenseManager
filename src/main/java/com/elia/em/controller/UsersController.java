@@ -27,7 +27,7 @@ public class UsersController {
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody User user){
         if(userRepository.findByEmail(user.getEmail()) != null)
             return ResponseEntity.badRequest().body("Email already in use, please choose different username");
