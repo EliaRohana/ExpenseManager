@@ -1,8 +1,8 @@
 package com.elia.em.controller;
 
 import com.elia.em.model.User;
-import com.elia.em.repository.UserRepository;
 import com.elia.em.security.CurrentUser;
+import com.elia.em.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class UsersController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
+
 
     @Autowired
-    public UsersController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UsersController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/principal")
@@ -29,10 +30,7 @@ public class UsersController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody User user){
-        if(userRepository.findByEmail(user.getEmail()) != null)
-            return ResponseEntity.badRequest().body("Email already in use, please choose different username");
-
-        userRepository.save(user);
+        userService.register(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

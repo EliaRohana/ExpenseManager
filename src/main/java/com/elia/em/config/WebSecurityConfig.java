@@ -22,20 +22,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .ignoringAntMatchers("/register")
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
-                .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/**","/index.html").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-               .permitAll();
+            .csrf()
+            .ignoringAntMatchers("/register")
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .and()
+            .authorizeRequests()
+            .antMatchers("/api/**").authenticated()
+            .antMatchers("/**","/index.html").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .httpBasic()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+           .permitAll();
 
     }
 
@@ -47,8 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService) throws Exception {
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(new BCryptPasswordEncoder());
     }
 
 }
