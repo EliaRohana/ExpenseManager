@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic()
             .and()
             .formLogin()
-            .loginPage("/login")
+            .loginPage("/em/login")
            .permitAll();
 
     }
