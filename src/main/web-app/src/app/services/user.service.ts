@@ -18,7 +18,7 @@ export class UserService {
   public authenticate(username, password): Observable<any>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append("Authorization", "Basic " + btoa(username + ":" + password));
-    let options = new RequestOptions({headers: headers});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
 
       let url = `${baseUrl}/principal`;
       return this.http.request(url, options)
