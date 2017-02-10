@@ -1,7 +1,6 @@
 package com.elia.em.config;
 
 
-import com.elia.em.security.MyCorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
@@ -20,13 +18,10 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private MyCorsFilter corsFilter;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
+
             .csrf()
             .ignoringAntMatchers("/register")
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
@@ -41,7 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .loginPage("/em/login")
            .permitAll();
-
     }
 
     @Bean

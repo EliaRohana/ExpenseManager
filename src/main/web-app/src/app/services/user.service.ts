@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Headers, RequestOptions, Response} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {baseUrl} from "./api-consts";
+import {apiUrl} from "../core/ap-consts";
 import {HttpClientService} from "../core/http-client.service";
 
 @Injectable()
@@ -20,7 +20,7 @@ export class UserService {
     headers.append("Authorization", "Basic " + btoa(username + ":" + password));
     let options = new RequestOptions({headers: headers, withCredentials: true});
 
-      let url = `${baseUrl}/principal`;
+      let url = `${apiUrl}/principal`;
       return this.http.request(url, options)
         .map((response) => {
           let user = {email: response.email, id: response.id};
@@ -31,7 +31,7 @@ export class UserService {
   }
 
   public register(newUser): Observable<Response> {
-    let url = `${baseUrl}/register`;
+    let url = `${apiUrl}/register`;
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(url, newUser, options)

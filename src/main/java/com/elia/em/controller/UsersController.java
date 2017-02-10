@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Elia on 12/8/2016.
  */
 @RestController
+@RequestMapping("/api")
 @CrossOrigin
 public class UsersController {
 

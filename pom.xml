@@ -108,6 +108,8 @@
                                 <arguments>
                                     <argument>build</argument>
                                     <argument>${angular.build.env}</argument>
+									<argument>--base-href</argument>
+									<argument>/em</argument>
                                 </arguments>
                             </configuration>
                             <goals>
@@ -150,12 +152,12 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-					</plugin>
-					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-clean-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
 					</plugin>
 				</plugins>
 			</build>

@@ -6,11 +6,8 @@ import {MonthlyReport} from "../model/MonthlyReport";
   selector: 'app-monthly-report-list',
   template: `
 <h2>Monthly Reports</h2>
-  <p-dataGrid [value]="monthlyReports" >
-      <template let-report>
-        <app-monthly-report [monthlyReport]="report"></app-monthly-report>
-      </template>
-  </p-dataGrid>
+<h3>{{monthlyReports | json}}</h3>
+<h4>{{apiErrorMsg}}</h4>
 `,
   styleUrls: ['./monthly-report-list.component.css']
 })
