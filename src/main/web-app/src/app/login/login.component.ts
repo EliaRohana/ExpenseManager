@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {UserService} from "../services/user.service";
 
 @Component({
@@ -10,6 +10,7 @@ import {UserService} from "../services/user.service";
     <form [formGroup]="loginForm"  (ngSubmit)="login()">
       <p-panel header="Login">
       
+        <div *ngIf="showError">Wrong email or password</div>
         <div class="login-field">
             <label>Username:</label>
             <input type="email" formControlName="username"  pInputText placeholder="Enter Username" class="username-input" />
@@ -38,9 +39,12 @@ export class LoginComponent implements OnInit {
   private password: FormControl;
   private router: Router;
   private authService: UserService;
+  private route: ActivatedRoute;
+  private showError: boolean;
 
-  constructor(router: Router, authService: UserService) {
+  constructor(router: Router, route: ActivatedRoute, authService: UserService) {
     this.router = router;
+    this.route = route;
     this.authService = authService;
   }
 
@@ -59,9 +63,17 @@ export class LoginComponent implements OnInit {
 
   public login(): void{
     this.authService.authenticate(this.username.value, this.password.value).subscribe((result) => {
-      if(result)
-        this.router.navigate(['reports'])
-    });
+      // get return url from route parameters or default to '/'
+      if(result){
+        let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.router.navigate([returnUrl])
+      }
+      else{
+        this.showError = true;
+      }
+
+    },
+        (error)=>this.showError = true);
 
 
 }

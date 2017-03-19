@@ -11,42 +11,54 @@ export class HttpClientService {
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.request(url, options).map(HttpClientService.extractData).catch(HttpClientService.handleError)
+  }
+
+  private setDefaultHeaders(options: RequestOptionsArgs) {
+    this.setDefaultHeaders(options);
+    options.headers.append('X-Requested-With', 'XMLHttpRequest');// this will prevent browser popup
   }
   /**
    * Performs a request with `get` http method.
    */
   get(url: string, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.get(url, options).map(HttpClientService.extractData).catch(HttpClientService.handleError)
   }
   /**
    * Performs a request with `post` http method.
    */
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.post(url, body, options).map(HttpClientService.extractData).catch(HttpClientService.handleError)
   }
   /**
    * Performs a request with `put` http method.
    */
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.put(url, body, options).map(HttpClientService.extractData).catch(HttpClientService.handleError)
   }
   /**
    * Performs a request with `delete` http method.
    */
   delete(url: string, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.delete(url, options).map(HttpClientService.extractData).catch(HttpClientService.handleError)
   }
   /**
    * Performs a request with `head` http method.
    */
   head(url: string, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.head(url, arguments)
   }
   /**
    * Performs a request with `options` http method.
    */
   options(url: string, options?: RequestOptionsArgs): Observable<any>{
+    this.setDefaultHeaders(options);
     return this.http.options(url, options);
   }
 
