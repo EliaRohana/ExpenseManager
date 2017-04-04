@@ -1,19 +1,18 @@
 package com.elia.em.core;
 
-import com.elia.em.model.MonthlyReport;
-
 /**
  * Created by Elia on 4/3/2017.
  */
-public class SimpleCrudService implements CrudService<MonthlyReport> {
+//@Service
+public class SimpleCrudService<T> implements CrudService<T> {
 
     @Override
-    public MonthlyReport create(MonthlyReport object) {
+    public T create(T object) {
         return null;
     }
 
     @Override
-    public MonthlyReport read(long id) {
+    public T read(long id) {
         return null;
     }
 
@@ -23,7 +22,7 @@ public class SimpleCrudService implements CrudService<MonthlyReport> {
     }
 
     @Override
-    public MonthlyReport update(MonthlyReport object) {
+    public T update(T object) {
         return null;
     }
 }

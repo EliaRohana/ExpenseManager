@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Elia on 4/1/2017.
  */
+//@Component
 public class SimpleCrudController<T> implements CrudRestController<T>{
 
     protected final CrudService<T> crudService;
+
 
     public SimpleCrudController(CrudService<T> crudService) {
         this.crudService = crudService;
